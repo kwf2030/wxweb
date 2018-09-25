@@ -485,7 +485,6 @@ func (bot *Bot) Stop() {
 }
 
 func (bot *Bot) Release() {
-  uin := bot.Self.Uin
   bots.Delete(bot.req.uin)
   bot.req.reset()
   bot.req.flow = nil
@@ -497,7 +496,12 @@ func (bot *Bot) Release() {
   bot.opChan = nil
   bot.opChanI = nil
   bot.State = BotUnknown
-  logger.Debug().Msgf("bot released, key(uin)=%d", uin)
+  if bot.Self != nil {
+    uin := bot.Self.Uin
+    logger.Debug().Msgf("bot released, key(uin)=%d", uin)
+  } else {
+    logger.Debug().Msgf("bot released")
+  }
 }
 
 type op struct {

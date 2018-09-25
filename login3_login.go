@@ -42,7 +42,7 @@ func (r *LoginReq) Run(s *flow.Step) {
   r.req.skey = conv.String(resp, "skey")
   r.req.passTicket = conv.String(resp, "pass_ticket")
   r.selectBaseURL(s, r.req.redirectURL)
-  logger.Info().Msgf("uin=%s", r.req.uin)
+  logger.Info().Msgf("uin=%d", r.req.uin)
   s.Complete(nil)
 }
 
