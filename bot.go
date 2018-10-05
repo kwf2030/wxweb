@@ -22,8 +22,6 @@ import (
   "golang.org/x/net/publicsuffix"
 )
 
-const Version = "0.1.0"
-
 const (
   BotUnknown = iota
 
