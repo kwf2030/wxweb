@@ -1,6 +1,6 @@
 github.com/gorilla/websocket v1.4.0/go.mod h1:E7qHFY5m1UJ88s3WnNqhKjPHQ0heANvMoAMk2YaljkQ=
-github.com/kwf2030/commons v1.0.1 h1:MJtCpKzRu1dOkAjPIovqyAkH4lzOUIep3vkCTrIVaWI=
-github.com/kwf2030/commons v1.0.1/go.mod h1:2m8ovOSDq9p6eaw3pUUj/9Qlv82SewuwSFfpODQo74c=
+github.com/kwf2030/commons v1.0.2 h1:QtJxk/MbECqnsPvwgdWEYJgyUpAbHMoEzhO1QW9Dls0=
+github.com/kwf2030/commons v1.0.2/go.mod h1:2m8ovOSDq9p6eaw3pUUj/9Qlv82SewuwSFfpODQo74c=
 github.com/rs/zerolog v1.9.1 h1:AjV/SFRF0+gEa6rSjkh0Eji/DnkrJKVpPho6SW5g4mU=
 github.com/rs/zerolog v1.9.1/go.mod h1:YbFCdg8HfsridGWAh22vktObvhZbQsZXe4/zB0OKkWU=
 go.etcd.io/bbolt v1.3.1-etcd.8/go.mod h1:IbVyRI1SCnLcuJnV2u8VeU0CEYM7e686BmAb1XKL+uU=
