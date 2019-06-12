@@ -1,2 +1,2 @@
-# wechatbot
-A chat bot for WeChat.
+# wxweb
+微信个人号机器人框架，基于微信网页版协议（代码简单明了，可能是目前最优雅的实现）。
