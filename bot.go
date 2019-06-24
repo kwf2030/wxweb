@@ -64,15 +64,11 @@ const (
 )
 
 var (
-  ErrInvalidArgs = errors.New("invalid args")
-
   ErrInvalidState = errors.New("invalid state")
 
   ErrReq = errors.New("request failed")
 
   ErrResp = errors.New("response invalid")
-
-  ErrScanTimeout = errors.New("scan timeout")
 
   ErrContactNotFound = errors.New("contact not found")
 )
@@ -116,7 +112,7 @@ func init() {
 }
 
 func updatePaths() {
-  time.AfterFunc(time2.UntilTomorrow(), func() {
+  time.AfterFunc(time2.Now2Tomorrow(), func() {
     for _, b := range RunningBots() {
       b.updatePaths()
     }

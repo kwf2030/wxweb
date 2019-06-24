@@ -59,7 +59,7 @@ func parseContactsResp(resp *http.Response) ([]*Contact, error) {
   if e != nil {
     return nil, e
   }
-  dump("6_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("6_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   cnt, _ := jsonparser.GetInt(body, "MemberCount")
   if cnt == 0 {
     cnt = 5000

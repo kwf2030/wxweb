@@ -8,6 +8,7 @@ import (
   "strconv"
   "time"
 
+  "github.com/kwf2030/commons/base"
   "github.com/kwf2030/commons/pipeline"
   "github.com/kwf2030/commons/time2"
 )
@@ -31,7 +32,7 @@ func (r *scanReq) Handle(ctx *pipeline.HandlerContext, val interface{}) {
   if redirectUrl == "" {
     // 如果是空，基本就是超时（一直没有扫描默认设置了2分钟超时），
     // 微信基本不可能返回200状态码的同时返回空redirect_url
-    r.handler.OnSignIn(ErrScanTimeout)
+    r.handler.OnSignIn(base.ErrTimeout)
     return
   }
   r.session.RedirectUrl = redirectUrl
@@ -52,7 +53,7 @@ out:
     // 200（已确认），201（已扫描），408（未扫描）
     code, addr, e := r.do()
     if e != nil {
-      time2.Sleep()
+      sleep()
       continue
     }
     switch code {
@@ -65,7 +66,7 @@ out:
 
     case 201:
       r.session.State = StateScan
-      time2.Sleep()
+      sleep()
       continue
 
     case 408:
@@ -112,7 +113,7 @@ func parseScanResp(resp *http.Response) (int, string, error) {
   if e != nil {
     return 0, "", e
   }
-  dump("2_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("2_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   data := string(body)
   arr := scanStCodeRegex.FindStringSubmatch(data)
   if len(arr) != 2 {

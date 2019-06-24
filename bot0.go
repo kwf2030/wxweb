@@ -4,8 +4,10 @@ import (
   "io/ioutil"
   "os"
   "strconv"
+  "time"
 
   "github.com/buger/jsonparser"
+  "github.com/kwf2030/commons/base"
   "github.com/kwf2030/commons/conv"
   "github.com/kwf2030/commons/time2"
 )
@@ -20,7 +22,7 @@ func (bot *Bot) DownloadAvatar(dst string) (string, error) {
 
 func (bot *Bot) Verify(toUserName, ticket string) error {
   if toUserName == "" || ticket == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   resp, e := bot.req.Verify(toUserName, ticket)
   if e != nil {
@@ -38,7 +40,7 @@ func (bot *Bot) Verify(toUserName, ticket string) error {
 
 func (bot *Bot) Remark(toUserName, remark string) error {
   if toUserName == "" || remark == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   resp, e := bot.req.Remark(toUserName, remark)
   if e != nil {
@@ -56,7 +58,7 @@ func (bot *Bot) Remark(toUserName, remark string) error {
 
 func (bot *Bot) GetContactFromServer(toUserName string) (*Contact, error) {
   if toUserName == "" {
-    return nil, ErrInvalidArgs
+    return nil, base.ErrInvalidArgs
   }
   resp, e := bot.req.GetContacts(toUserName)
   if e != nil {
@@ -83,7 +85,7 @@ func (bot *Bot) GetContactFromServer(toUserName string) (*Contact, error) {
 
 func (bot *Bot) GetContactsFromServer(toUserNames ...string) ([]*Contact, error) {
   if len(toUserNames) == 0 {
-    return nil, ErrInvalidArgs
+    return nil, base.ErrInvalidArgs
   }
   resp, e := bot.req.GetContacts(toUserNames...)
   if e != nil {
@@ -115,7 +117,7 @@ func (bot *Bot) GetContactsFromServer(toUserNames ...string) ([]*Contact, error)
 
 func (bot *Bot) SendText(toUserName string, text string) error {
   if toUserName == "" || text == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   if bot.contacts == nil {
     return ErrInvalidState
@@ -143,7 +145,7 @@ func (bot *Bot) sendText(toUserName string, text string) error {
 
 func (bot *Bot) SendImage(toUserName string, data []byte, filename string) (string, error) {
   if toUserName == "" || len(data) == 0 || filename == "" {
-    return "", ErrInvalidArgs
+    return "", base.ErrInvalidArgs
   }
   if bot.contacts == nil {
     return "", ErrInvalidState
@@ -156,7 +158,7 @@ func (bot *Bot) SendImage(toUserName string, data []byte, filename string) (stri
 
 func (bot *Bot) SendVideo(toUserName string, data []byte, filename string) (string, error) {
   if toUserName == "" || len(data) == 0 || filename == "" {
-    return "", ErrInvalidArgs
+    return "", base.ErrInvalidArgs
   }
   if bot.contacts == nil {
     return "", ErrInvalidState
@@ -191,7 +193,7 @@ func (bot *Bot) sendMedia(toUserName string, data []byte, filename string, msgTy
 
 func (bot *Bot) ForwardImage(toUserName, mediaId string) error {
   if toUserName == "" || mediaId == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   if bot.contacts == nil {
     return ErrInvalidState
@@ -205,7 +207,7 @@ func (bot *Bot) ForwardImage(toUserName, mediaId string) error {
 
 func (bot *Bot) ForwardVideo(toUserName, mediaId string) error {
   if toUserName == "" || mediaId == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   if bot.contacts == nil {
     return ErrInvalidState
@@ -311,6 +313,10 @@ func timestampStringR(l int) string {
     return s[i:]
   }
   return s
+}
+
+func sleep() {
+  time.Sleep(time2.RandMillis(1000, 3000))
 }
 
 func dump(filename string, data []byte) {

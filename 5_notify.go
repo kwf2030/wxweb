@@ -54,6 +54,6 @@ func (r *notifyReq) do() error {
   if e != nil {
     return e
   }
-  dump("5_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("5_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return nil
 }

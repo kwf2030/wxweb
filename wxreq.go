@@ -68,7 +68,7 @@ func (r *wxReq) DownloadQRCode(dst string) (string, error) {
   if e != nil {
     return "", e
   }
-  dump("DownloadQRCode_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("DownloadQRCode_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   if dst == "" {
     dst = path.Join(os.TempDir(), "wxweb_qrcode.jpg")
   }
@@ -92,7 +92,7 @@ func (r *wxReq) DownloadAvatar(dst string) (string, error) {
   if e != nil {
     return "", e
   }
-  dump("DownloadAvatar_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("DownloadAvatar_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   if dst == "" {
     dst = path.Join(os.TempDir(), fmt.Sprintf("wxweb_%d.jpg", r.session.Uin))
   }
@@ -140,7 +140,7 @@ func (r *wxReq) Verify(toUserName, ticket string) ([]byte, error) {
   if e != nil {
     return nil, e
   }
-  dump("Verify_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("Verify_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -171,7 +171,7 @@ func (r *wxReq) Remark(toUserName, remark string) ([]byte, error) {
   if e != nil {
     return nil, e
   }
-  dump("Remark_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("Remark_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -209,7 +209,7 @@ func (r *wxReq) GetContacts(toUserNames ...string) ([]byte, error) {
   if e != nil {
     return nil, e
   }
-  dump("GetContacts_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("GetContacts_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -239,7 +239,7 @@ func (r *wxReq) SignOut() ([]byte, error) {
   if e != nil {
     return nil, e
   }
-  dump("SignOut_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("SignOut_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -279,7 +279,7 @@ func (r *wxReq) SendText(toUserName, text string) ([]byte, error) {
   if e != nil {
     return nil, e
   }
-  dump("SendText_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("SendText_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -322,7 +322,7 @@ func (r *wxReq) SendMedia(toUserName, mediaId string, msgType int, sendUrlPath s
   if e != nil {
     return nil, e
   }
-  dump("SendMedia_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("SendMedia_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   return body, nil
 }
 
@@ -460,7 +460,7 @@ func (r *wxReq) uploadChunk(info *uploadInfo) (string, error) {
   if e != nil {
     return "", e
   }
-  dump("uploadChunk_"+time2.NowStrf(time2.DateTimeMsFormat5), body)
+  dump("uploadChunk_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
   mediaId, _ := jsonparser.GetString(body, "MediaId")
   return mediaId, nil
 }

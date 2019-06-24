@@ -5,6 +5,7 @@ import (
   "sync"
 
   "github.com/buger/jsonparser"
+  "github.com/kwf2030/commons/base"
   "github.com/kwf2030/commons/conv"
 )
 
@@ -161,21 +162,21 @@ func (msg *Message) GetToContact() *Contact {
 
 func (msg *Message) ReplyText(text string) error {
   if text == "" {
-    return ErrInvalidArgs
+    return base.ErrInvalidArgs
   }
   return msg.bot.sendText(msg.FromUserName, text)
 }
 
 func (msg *Message) ReplyImage(data []byte, filename string) (string, error) {
   if len(data) == 0 || filename == "" {
-    return "", ErrInvalidArgs
+    return "", base.ErrInvalidArgs
   }
   return msg.bot.sendMedia(msg.FromUserName, data, filename, MsgImage, sendImageUrlPath)
 }
 
 func (msg *Message) ReplyVideo(data []byte, filename string) (string, error) {
   if len(data) == 0 || filename == "" {
-    return "", ErrInvalidArgs
+    return "", base.ErrInvalidArgs
   }
   return msg.bot.sendMedia(msg.FromUserName, data, filename, MsgVideo, sendVideoUrlPath)
 }
