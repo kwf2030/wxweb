@@ -166,21 +166,21 @@ func (c *Contact) Update() *Contact {
 
 func (c *Contact) SendText(text string) error {
   if text == "" {
-    return base.ErrInvalidArgs
+    return base.ErrInvalidArgument
   }
   return c.bot.sendText(c.UserName, text)
 }
 
 func (c *Contact) SendImage(data []byte, filename string) (string, error) {
   if len(data) == 0 || filename == "" {
-    return "", base.ErrInvalidArgs
+    return "", base.ErrInvalidArgument
   }
   return c.bot.sendMedia(c.UserName, data, filename, MsgImage, sendImageUrlPath)
 }
 
 func (c *Contact) SendVideo(data []byte, filename string) (string, error) {
   if len(data) == 0 || filename == "" {
-    return "", base.ErrInvalidArgs
+    return "", base.ErrInvalidArgument
   }
   return c.bot.sendMedia(c.UserName, data, filename, MsgVideo, sendVideoUrlPath)
 }
