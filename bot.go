@@ -76,7 +76,7 @@ var (
 var (
   dumpEnabled = false
 
-  botsMutex = &sync.RWMutex{}
+  botsMutex = sync.RWMutex{}
   bots      = make(map[int64]*Bot, 4)
 )
 
@@ -135,11 +135,9 @@ func EachBot(f func(*Bot) bool) {
 }
 
 func CountBots() int {
-  l := 0
   botsMutex.RLock()
-  l = len(bots)
-  botsMutex.RUnlock()
-  return l
+  defer botsMutex.RUnlock()
+  return len(bots)
 }
 
 func EnableDump(enabled bool) {
@@ -183,8 +181,8 @@ func New() *Bot {
   k := time2.Timestamp()
   bot.attr.Store(attrRandUin, k)
   botsMutex.Lock()
+  defer botsMutex.Unlock()
   bots[k] = bot
-  botsMutex.Unlock()
   return bot
 }
 
@@ -218,14 +216,11 @@ func GetBotByUin(uin int64) *Bot {
 func RunningBots() []*Bot {
   ret := make([]*Bot, 0, 4)
   botsMutex.RLock()
+  defer botsMutex.RUnlock()
   for _, v := range bots {
     if v.session.State == StateRunning {
       ret = append(ret, v)
     }
-  }
-  botsMutex.RUnlock()
-  if len(ret) == 0 {
-    return nil
   }
   return ret
 }
@@ -253,8 +248,8 @@ func (bot *Bot) Start(handler Handler) {
   bot.signInPipeline.Fire(nil)
   if k, ok := bot.attr.Load(attrRandUin); ok {
     botsMutex.Lock()
+    defer botsMutex.Unlock()
     delete(bots, k.(int64))
-    botsMutex.Unlock()
   }
 }
 

@@ -7,15 +7,15 @@ import (
 
 type Contacts struct {
   data map[string]*Contact
-  mu   *sync.RWMutex
   bot  *Bot
+  mu   sync.RWMutex
 }
 
 func initContacts(contacts []*Contact, bot *Bot) *Contacts {
   ret := &Contacts{
     data: make(map[string]*Contact, 5000),
-    mu:   &sync.RWMutex{},
     bot:  bot,
+    mu:   sync.RWMutex{},
   }
   for _, c := range contacts {
     c.bot = bot
@@ -29,8 +29,8 @@ func (cs *Contacts) Add(c *Contact) {
     return
   }
   cs.mu.Lock()
+  defer cs.mu.Unlock()
   cs.data[c.UserName] = c
-  cs.mu.Unlock()
 }
 
 func (cs *Contacts) Remove(userName string) {
@@ -38,8 +38,8 @@ func (cs *Contacts) Remove(userName string) {
     return
   }
   cs.mu.Lock()
+  defer cs.mu.Unlock()
   delete(cs.data, userName)
-  cs.mu.Unlock()
 }
 
 func (cs *Contacts) Get(userName string) *Contact {
@@ -47,8 +47,8 @@ func (cs *Contacts) Get(userName string) *Contact {
     return nil
   }
   cs.mu.RLock()
+  defer cs.mu.RUnlock()
   ret := cs.data[userName]
-  cs.mu.RUnlock()
   return ret
 }
 
@@ -57,6 +57,7 @@ func (cs *Contacts) Find(keyword string) *Contact {
     return nil
   }
   cs.mu.RLock()
+  defer cs.mu.RUnlock()
   var ret *Contact
   for _, c := range cs.data {
     if (c.NickName != "" && strings.Contains(c.NickName, keyword)) ||
@@ -65,24 +66,23 @@ func (cs *Contacts) Find(keyword string) *Contact {
       break
     }
   }
-  cs.mu.RUnlock()
   return ret
 }
 
 func (cs *Contacts) Count() int {
   cs.mu.RLock()
+  defer cs.mu.RUnlock()
   ret := len(cs.data)
-  cs.mu.RUnlock()
   return ret
 }
 
 func (cs *Contacts) Each(f func(*Contact) bool) {
   cs.mu.RLock()
+  defer cs.mu.RUnlock()
   arr := make([]*Contact, 0, len(cs.data))
   for _, c := range cs.data {
     arr = append(arr, c)
   }
-  cs.mu.RUnlock()
   for _, c := range arr {
     if !f(c) {
       break
