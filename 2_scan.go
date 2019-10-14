@@ -113,7 +113,7 @@ func parseScanResp(resp *http.Response) (int, string, error) {
   if e != nil {
     return 0, "", e
   }
-  dump("2_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
+  dump("2_"+time2.ShanghaiStrf(time2.DateTimeFormatMs5), body)
   data := string(body)
   arr := scanStCodeRegex.FindStringSubmatch(data)
   if len(arr) != 2 {

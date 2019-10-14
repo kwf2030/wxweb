@@ -112,7 +112,7 @@ func init() {
 }
 
 func updatePaths() {
-  time.AfterFunc(time2.Now2Tomorrow(), func() {
+  time.AfterFunc(time2.DurationUntilTomorrow(time2.Shanghai()), func() {
     for _, b := range RunningBots() {
       b.updatePaths()
     }
@@ -275,7 +275,7 @@ func (bot *Bot) updatePaths() {
     return
   }
   uin := strconv.FormatInt(bot.session.Uin, 10)
-  dir := path.Join(rootDir, uin, time2.NowStrf(time2.DateFormat))
+  dir := path.Join(rootDir, uin, time2.ShanghaiStrf(time2.DateFormat))
   e := os.MkdirAll(dir, os.ModePerm)
   if e != nil {
     return

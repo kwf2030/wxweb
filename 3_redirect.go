@@ -79,7 +79,7 @@ func parseRedirectResp(resp *http.Response) (*redirectResp, error) {
   if e != nil {
     return nil, e
   }
-  dump("3_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
+  dump("3_"+time2.ShanghaiStrf(time2.DateTimeFormatMs5), body)
   ret := &redirectResp{}
   e = xml.Unmarshal(body, ret)
   if e != nil {

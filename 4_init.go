@@ -73,7 +73,7 @@ func parseInitResp(resp *http.Response) (*Contact, error) {
   if e != nil {
     return nil, e
   }
-  dump("4_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
+  dump("4_"+time2.ShanghaiStrf(time2.DateTimeFormatMs5), body)
   c := &Contact{raw: body, attr: &sync.Map{}}
   jsonparser.EachKey(body, func(i int, v []byte, _ jsonparser.ValueType, e error) {
     if e != nil {

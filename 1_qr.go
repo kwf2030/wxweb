@@ -67,7 +67,7 @@ func parseQRResp(resp *http.Response) (string, error) {
   if e != nil {
     return "", e
   }
-  dump("1_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
+  dump("1_"+time2.ShanghaiStrf(time2.DateTimeFormatMs5), body)
   data := string(body)
   match := uuidRegex.FindStringSubmatch(data)
   if len(match) != 2 {

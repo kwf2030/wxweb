@@ -1,7 +1,7 @@
 github.com/buger/jsonparser v0.0.0-20191004114745-ee4c978eae7e h1:oJCXMss/3rg5F6Poy9wG3JQusc58Mzk5B9Z6wSnssNE=
 github.com/buger/jsonparser v0.0.0-20191004114745-ee4c978eae7e/go.mod h1:errmMKH8tTB49UR2A8C8DPYkyudelsYJwJFaZHQ6ik8=
-github.com/kwf2030/commons v1.1.0 h1:k/68/cACXotkAVL6AULTPogCzA2zdTzDnv2ejlvBPPs=
-github.com/kwf2030/commons v1.1.0/go.mod h1:yFGzJxUs9MNDzpKIWrvb8HIgtZzj87klI8XcDIyzoWw=
+github.com/kwf2030/commons v1.2.1 h1:esf/Hc30NtAQ/rZBQqcUT84nb2R1sWXiFIRvUmU/vIQ=
+github.com/kwf2030/commons v1.2.1/go.mod h1:yFGzJxUs9MNDzpKIWrvb8HIgtZzj87klI8XcDIyzoWw=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20191007182048-72f939374954 h1:JGZucVF/L/TotR719NbujzadOZ2AgnYlqphQGHDCKaU=
 golang.org/x/net v0.0.0-20191007182048-72f939374954/go.mod h1:z5CRVTTTmAJ677TzLLGU+0bjPO0LkuOLi4/5GtJWs/s=

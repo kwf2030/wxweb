@@ -9,6 +9,7 @@ import (
   "github.com/buger/jsonparser"
   "github.com/kwf2030/commons/base"
   "github.com/kwf2030/commons/conv"
+  "github.com/kwf2030/commons/rand2"
   "github.com/kwf2030/commons/time2"
 )
 
@@ -316,7 +317,7 @@ func timestampStringR(l int) string {
 }
 
 func sleep() {
-  time.Sleep(time2.RandMillis(1000, 3000))
+  time.Sleep(rand2.RandMilliseconds(1000, 3000))
 }
 
 func dump(filename string, data []byte) {

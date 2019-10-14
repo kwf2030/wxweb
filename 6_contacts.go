@@ -23,7 +23,7 @@ func (r *contactsReq) Handle(ctx *pipeline.HandlerContext, val interface{}) {
     return
   }
   r.contacts = initContacts(arr, r.Bot)
-  r.StartTime = time2.Now()
+  r.StartTime = time2.Shanghai()
   r.session.State = StateRunning
   botsMutex.Lock()
   bots[r.session.Uin] = r.Bot
@@ -59,7 +59,7 @@ func parseContactsResp(resp *http.Response) ([]*Contact, error) {
   if e != nil {
     return nil, e
   }
-  dump("6_"+time2.NowStrf(time2.DateTimeFormatMs5), body)
+  dump("6_"+time2.ShanghaiStrf(time2.DateTimeFormatMs5), body)
   cnt, _ := jsonparser.GetInt(body, "MemberCount")
   if cnt == 0 {
     cnt = 5000
