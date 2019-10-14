@@ -254,7 +254,7 @@ func (bot *Bot) Start(handler Handler) {
 }
 
 func (bot *Bot) Stop() {
-  bot.StopTime = time2.Now()
+  bot.StopTime = time2.Shanghai()
   bot.session.State = StateStop
   bot.req.SignOut()
 }
