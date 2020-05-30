@@ -1,9 +1,9 @@
 module github.com/kwf2030/wxweb
 
-go 1.13
+go 1.14
 
 require (
-	github.com/buger/jsonparser v0.0.0-20191004114745-ee4c978eae7e
-	github.com/kwf2030/commons v1.2.1
-	golang.org/x/net v0.0.0-20191007182048-72f939374954
+	github.com/buger/jsonparser v1.0.0
+	github.com/kwf2030/commons v1.2.2
+	golang.org/x/net v0.0.0-20200528225125-3c3fba18258b
 )
